@@ -105,7 +105,7 @@
   };
 
   // export
-  if (typeof module !== 'undefiled') {
+  if (typeof module !== 'undefined') {
     module.exports = UnicodeCharName;
   } else {
     global.UnicodeCharName = UnicodeCharName;

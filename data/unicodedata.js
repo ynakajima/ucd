@@ -24432,7 +24432,7 @@ var UnicodeData = [
  "10FFFD;<Plane 16 Private Use, Last>"
 ];
  
-  if (typeof module !== 'undefiled') {
+  if (typeof module !== 'undefined') {
     module.exports = UnicodeData;
   } else {
     global.UnicodeData = UnicodeData;
