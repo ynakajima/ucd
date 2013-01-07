@@ -24,7 +24,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * </pre>
  *
- * @fileoverview UnicodeCharName.
+ * @fileoverview UCD offers a series of functions that provide a simple
+ * interface to the Unicode Character Database.
  * @author yuhta.nakajima@gmail.com (ynakajima)
  */
 (function(global) {
@@ -35,29 +36,28 @@
     global.UnicodeData;
 
   /**
-   * Unicode Charactor Name
-   * @constructor
+   * Unicode Charactor Database
+   * @type {Object}
    */
-  function UnicodeCharName() {
-  }
+  var UCD = {};
 
   /**
    * Get Unicode Name
    * @param {string} char single string.
    * @return {string} Unicode Name.
    */
-  UnicodeCharName.getCharName = function(char) {
+  UCD.getCharName = function(char) {
 
     // 文字コードの取得
     var charCode = char.charCodeAt(0);
 
     // charNameListが初期化されていない場合は初期化
-    if (typeof UnicodeCharName.charNameList === 'undefined') {
-      UnicodeCharName.readUnicodeData();
+    if (typeof UCD.charNameList === 'undefined') {
+      UCD.readUnicodeData();
     }
 
     // return Unicode Name
-    var unicodeName = UnicodeCharName.charNameList[charCode];
+    var unicodeName = UCD.charNameList[charCode];
     return (typeof unicodeName !== 'undefined') ? unicodeName : 'undefined';
 
   };
@@ -65,7 +65,7 @@
   /**
    * Read UnicodeData
    */
-  UnicodeCharName.readUnicodeData = function() {
+  UCD.readUnicodeData = function() {
 
     var unicodedata = UnicodeData;
     var charNameList = [];
@@ -100,15 +100,19 @@
 
     }
 
-    UnicodeCharName.charNameList = charNameList;
+    /**
+     * @type {Array.<string>}
+     * @private
+     */
+    UCD.charNameList = charNameList;
 
   };
 
   // export
   if (typeof module !== 'undefined') {
-    module.exports = UnicodeCharName;
+    module.exports = UCD;
   } else {
-    global.UnicodeCharName = UnicodeCharName;
+    global.UCD = UCD;
   }
 
 })(this);
