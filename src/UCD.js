@@ -43,13 +43,13 @@
 
   /**
    * Get Unicode Name
-   * @param {string} char single string.
+   * @param {string} character single string.
    * @return {string} Unicode Name.
    */
-  UCD.getCharName = function(char) {
+  UCD.getCharName = function(character) {
 
     // 文字コードの取得
-    var charCode = char.charCodeAt(0);
+    var charCode = character.charCodeAt(0);
 
     // charNameListが初期化されていない場合は初期化
     if (typeof UCD.charNameList === 'undefined') {
