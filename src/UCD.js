@@ -46,7 +46,7 @@
    * @param {string} character single string.
    * @return {string} Unicode Name.
    */
-  UCD.getCharName = function(character) {
+  UCD.getName = function(character) {
 
     // 文字コードの取得
     var charCode = character.charCodeAt(0);
