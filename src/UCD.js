@@ -52,29 +52,42 @@
     var charCode = character.charCodeAt(0);
 
     // charNameListが初期化されていない場合は初期化
-    if (typeof UCD.charNameList === 'undefined') {
-      UCD.readUnicodeData();
+    if (typeof UCD.characterNameList === 'undefined') {
+      UCD.readUnicodeData(UnicodeData);
     }
 
     // return Unicode Name
-    var unicodeName = UCD.charNameList[charCode];
+    var unicodeName = UCD.characterNameList[charCode];
     return (typeof unicodeName !== 'undefined') ? unicodeName : 'undefined';
 
   };
 
   /**
+   * Get Unicode Version
+   */
+  UCD.getUnicodeVersion = function() {
+
+    // charNameListが初期化されていない場合は初期化
+    if (typeof UCD.characterNameList === 'undefined') {
+      UCD.readUnicodeData(UnicodeData);
+    }
+
+    return UCD.unicodeVersion;
+  };
+
+  /**
    * Read UnicodeData
    */
-  UCD.readUnicodeData = function() {
+  UCD.readUnicodeData = function(unicodeData) {
 
-    var unicodedata = UnicodeData;
-    var charNameList = [];
+    UCD.unicodeVersion = unicodeData.unicodeVersion;
+    var characterNameList = [];
 
     // UnicodeNameを読み込んで展開
-    for (var i = 0, l = unicodedata.length; i < l; i++) {
+    for (var i = 0, l = unicodeData.characterNameList.length; i < l; i++) {
 
       // 行を取得
-      var line = unicodedata[i];
+      var line = unicodeData.characterNameList[i];
 
       // セミコロンで分割
       var charData = line.split(';');
@@ -86,14 +99,17 @@
 
         // 連続データの場合は連続して処理
         if (charName.indexOf(', First>') !== -1) {
-          var lastCharCode = parseInt(unicodedata[++i].split(';')[0], 16);
+          var lastCharCode = parseInt(
+            unicodeData.characterNameList[++i].split(';')[0],
+            16
+          );
           charName = charName.replace(/, First>$/, '').replace(/^</, '');
           for (; charCode <= lastCharCode; charCode++) {
             var hexCharCode = charCode.toString(16).toUpperCase();
-            charNameList[charCode] = charName + '-' + hexCharCode;
+            characterNameList[charCode] = charName + '-' + hexCharCode;
           }
         } else {
-          charNameList[charCode] = charName;
+          characterNameList[charCode] = charName;
         }
 
       }
@@ -104,7 +120,7 @@
      * @type {Array.<string>}
      * @private
      */
-    UCD.charNameList = charNameList;
+    UCD.characterNameList = characterNameList;
 
   };
 

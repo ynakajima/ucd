@@ -37,8 +37,17 @@
   // spec
   describe('UnicodeData', function() {
 
-    it('is Array', function() {
-      expect(UnicodeData).toEqual(jasmine.any(Array));
+    it('is Object', function() {
+      expect(UnicodeData).toEqual(jasmine.any(Object));
+    });
+
+    it('has unicodeVersion', function() {
+      expect(UnicodeData.unicodeVersion).toBeDefined();
+
+    });
+
+    it('has characterNameList', function() {
+      expect(UnicodeData.characterNameList).toEqual(jasmine.any(Array));
     });
 
   });

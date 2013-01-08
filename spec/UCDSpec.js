@@ -33,6 +33,9 @@
   var UCD = (typeof require !== 'undefined') ?
     require('../src/UCD.js') :
     global.UCD;
+  var UnicodeData = (typeof require !== 'undefined') ?
+    require('../data/unicodedata.js') :
+    global.UnicodeData;
 
   // spec
   describe('UCD', function() {
@@ -47,6 +50,11 @@
 
     it('has getCharName Class method', function() {
       expect(UCD.getCharName).toEqual(jasmine.any(Function));
+    });
+
+    it('has getUnicodeVersion Class method', function() {
+      expect(UCD.getUnicodeVersion).toEqual(jasmine.any(Function));
+      expect(UCD.getUnicodeVersion()).toEqual(UnicodeData.unicodeVersion);
     });
 
   });
