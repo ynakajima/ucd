@@ -35,7 +35,13 @@ var fs = require('fs'),
 fs.readFile(process.argv[2], 'utf-8', function(err, data) {
 
   // UnicodeData
-  var unicodedata = [];
+  var UnicodeData = {};
+
+  // Unicode version
+  UnicodeData.unicodeVersion = process.argv[3];
+  
+  // characterNameList
+  UnicodeData.characterNameList = [];
 
   /* データを１行づつ読む */
 
@@ -50,11 +56,11 @@ fs.readFile(process.argv[2], 'utf-8', function(err, data) {
     // セミコロンで分割
     var charData = line.split(';');
 
-    // データを切り出して unicodedata に格納
+    // データを切り出して UnicodeData に格納
     if (charData.length >= 2) {
       var charCode = charData[0];
       var charName = charData[1];
-      unicodedata.push(charCode + ';' + charName);
+      UnicodeData.characterNameList.push(charCode + ';' + charName);
     }
 
   }
@@ -62,9 +68,10 @@ fs.readFile(process.argv[2], 'utf-8', function(err, data) {
   // ダイエットされたコードを出力
   var resultCode = util.format(
     'var UnicodeData = %s;',
-    JSON.stringify(unicodedata, ',', ' ')
+    JSON.stringify(UnicodeData, ',', ' ')
   );
 
+  console.log('/* Unicode Character Database v.' + UnicodeData.unicodeVersion + ' */');
   console.log(fs.readFileSync('snippet/header.js', 'utf-8').toString());
   console.log(resultCode);
   console.log(fs.readFileSync('snippet/footer.js', 'utf-8').toString());
