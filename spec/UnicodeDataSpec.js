@@ -49,6 +49,20 @@
     it('has characterNameList', function() {
       expect(UnicodeData.characterNameList).toEqual(jasmine.any(Array));
     });
+    
+
+  });
+
+  describe('UnicodeData.characterNameList', function() {
+
+    it('has CJK UNIFIED IDEOGRAPH and HANGUL SYLLABLE', function() {
+      expect(UnicodeData.characterNameList).toContain('3400;<CJK UNIFIED IDEOGRAPH EXTENSION A, First>');
+      expect(UnicodeData.characterNameList).toContain('4E00;<CJK UNIFIED IDEOGRAPH, First>');
+      expect(UnicodeData.characterNameList).toContain('AC00;<HANGUL SYLLABLE, First>');
+      expect(UnicodeData.characterNameList).toContain('20000;<CJK UNIFIED IDEOGRAPH EXTENSION B, First>');
+      expect(UnicodeData.characterNameList).toContain('2A700;<CJK UNIFIED IDEOGRAPH EXTENSION C, First>');
+      expect(UnicodeData.characterNameList).toContain('2B740;<CJK UNIFIED IDEOGRAPH EXTENSION D, First>');
+    });
 
   });
 

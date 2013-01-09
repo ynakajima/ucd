@@ -71,10 +71,10 @@
       expect(UCD.getName('ガ')).toEqual('KATAKANA LETTER GA');
       expect(UCD.getName('〴')).toEqual('VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF');
       expect(UCD.getName('㋀')).toEqual('IDEOGRAPHIC TELEGRAPH SYMBOL FOR JANUARY');
-      expect(UCD.getName('吉')).toEqual('CJK Ideograph-5409');
-      expect(UCD.getName('邉')).toEqual('CJK Ideograph-9089');
-      expect(UCD.getName('鸙')).toEqual('CJK Ideograph-9E19');
-      expect(UCD.getName('㐅')).toEqual('CJK Ideograph Extension A-3405');
+      expect(UCD.getName('吉')).toEqual('CJK UNIFIED IDEOGRAPH-5409');
+      expect(UCD.getName('邉')).toEqual('CJK UNIFIED IDEOGRAPH-9089');
+      expect(UCD.getName('鸙')).toEqual('CJK UNIFIED IDEOGRAPH-9E19');
+      expect(UCD.getName('㐅')).toEqual('CJK UNIFIED IDEOGRAPH EXTENSION A-3405');
       expect(UCD.getName('䷠')).toEqual('HEXAGRAM FOR RETREAT');
       expect(UCD.getName('㋒')).toEqual('CIRCLED KATAKANA U');
       expect(UCD.getName('ㆡ')).toEqual('BOPOMOFO LETTER ZI');
@@ -137,10 +137,10 @@
       expect(UCD.getName('㇏')).toEqual('CJK STROKE N');
       expect(UCD.getName('ㇼ')).toEqual('KATAKANA LETTER SMALL RI');
       expect(UCD.getName('㉀')).toEqual('PARENTHESIZED IDEOGRAPH FESTIVAL');
-      expect(UCD.getName('㐦')).toEqual('CJK Ideograph Extension A-3426');
+      expect(UCD.getName('㐦')).toEqual('CJK UNIFIED IDEOGRAPH EXTENSION A-3426');
       expect(UCD.getName('ꁽ')).toEqual('YI SYLLABLE NBAT');
       expect(UCD.getName('ꔞ')).toEqual('VAI SYLLABLE KEE');
-      expect(UCD.getName('걟')).toEqual('Hangul Syllable-AC5F');
+      expect(UCD.getName('걟')).toEqual('HANGUL SYLLABLE-AC5F');
       expect(UCD.getName('龜')).toEqual('CJK COMPATIBILITY IDEOGRAPH-F908');
       expect(UCD.getName('תּ')).toEqual('HEBREW LETTER TAV WITH DAGESH');
       expect(UCD.getName('︑')).toEqual('PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA');

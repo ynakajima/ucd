@@ -59,7 +59,7 @@ fs.readFile(process.argv[2], 'utf-8', function(err, data) {
     // データを切り出して UnicodeData に格納
     if (charData.length >= 2) {
       var charCode = charData[0];
-      var charName = charData[1];
+      var charName = charData[1].replace('CJK Ideograph', 'CJK UNIFIED IDEOGRAPH').replace('Extension', 'EXTENSION').replace('Hangul Syllable','HANGUL SYLLABLE');
       UnicodeData.characterNameList.push(charCode + ';' + charName);
     }
 
