@@ -31,7 +31,7 @@
 
   // require
   var UCD = (typeof require !== 'undefined') ?
-    require('../src/UCD.js') :
+    require('../') :
     global.UCD;
   var UnicodeData = (typeof require !== 'undefined') ?
     require('../data/unicodedata.js') :
