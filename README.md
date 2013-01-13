@@ -9,12 +9,17 @@ UCD offers a series of functions that provide a simple interface to the Unicode 
 * Modern Web Browsers
 
 
+## Install for Node.js
+```sh
+npm install ucd
+```
+
 ## How to load a UCD module
 
 ### Node.js
 ```javascript
 // load UCD
-var UCD = require('UCD');
+var UCD = require('ucd');
 ```
 
 
