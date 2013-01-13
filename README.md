@@ -26,7 +26,7 @@ var UCD = require('ucd');
 ### Web Browser
 ```html
 <!-- laod UCD -->
-<script type="text/javascript" src="ucd-0.1.0.js"></script>
+<script type="text/javascript" src="ucd-0.1.1.js"></script>
 ```
 
 ## Usage
