@@ -1,0 +1,19 @@
+{
+  "name" : "ucd",
+  "version" : "0.1.0",
+  "description" : "ucd - Unicode Character Database for JavaScript",
+  "tags" : ["unicode", "ucd", "utility"],
+  "author" : "ynakajima <yuhta.nakajima@gmail.com>",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ynakajima/ucd.git"
+  },
+  "bugs" : { "web" : "https://github.com/ynakajima/ucd/issues" },
+  "licenses" : [ 
+    { 
+      "type" : "MIT",
+      "url" : "http://github.com/ynakajima/ucd/raw/master/MIT-LICENSE.txt"
+    }
+  ],
+  "main" : "./src/UCD.js"
+}

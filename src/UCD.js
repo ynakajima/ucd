@@ -24,7 +24,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * </pre>
  *
- * @fileoverview UnicodeCharName.
+ * @fileoverview UCD offers a series of functions that provide a simple
+ * interface to the Unicode Character Database.
  * @author yuhta.nakajima@gmail.com (ynakajima)
  */
 (function(global) {
@@ -35,46 +36,58 @@
     global.UnicodeData;
 
   /**
-   * Unicode Charactor Name
-   * @constructor
+   * Unicode Charactor Database
+   * @type {Object}
    */
-  function UnicodeCharName() {
-  }
+  var UCD = {};
 
   /**
    * Get Unicode Name
-   * @param {string} char single string.
+   * @param {string} character single string.
    * @return {string} Unicode Name.
    */
-  UnicodeCharName.getCharName = function(char) {
+  UCD.getName = function(character) {
 
     // 文字コードの取得
-    var charCode = char.charCodeAt(0);
+    var charCode = character.charCodeAt(0);
 
     // charNameListが初期化されていない場合は初期化
-    if (typeof UnicodeCharName.charNameList === 'undefined') {
-      UnicodeCharName.readUnicodeData();
+    if (typeof UCD.characterNameList === 'undefined') {
+      UCD.readUnicodeData(UnicodeData);
     }
 
     // return Unicode Name
-    var unicodeName = UnicodeCharName.charNameList[charCode];
+    var unicodeName = UCD.characterNameList[charCode];
     return (typeof unicodeName !== 'undefined') ? unicodeName : 'undefined';
 
   };
 
   /**
+   * Get Unicode Version
+   */
+  UCD.getUnicodeVersion = function() {
+
+    // charNameListが初期化されていない場合は初期化
+    if (typeof UCD.characterNameList === 'undefined') {
+      UCD.readUnicodeData(UnicodeData);
+    }
+
+    return UCD.unicodeVersion;
+  };
+
+  /**
    * Read UnicodeData
    */
-  UnicodeCharName.readUnicodeData = function() {
+  UCD.readUnicodeData = function(unicodeData) {
 
-    var unicodedata = UnicodeData;
-    var charNameList = [];
+    UCD.unicodeVersion = unicodeData.unicodeVersion;
+    var characterNameList = [];
 
     // UnicodeNameを読み込んで展開
-    for (var i = 0, l = unicodedata.length; i < l; i++) {
+    for (var i = 0, l = unicodeData.characterNameList.length; i < l; i++) {
 
       // 行を取得
-      var line = unicodedata[i];
+      var line = unicodeData.characterNameList[i];
 
       // セミコロンで分割
       var charData = line.split(';');
@@ -86,29 +99,36 @@
 
         // 連続データの場合は連続して処理
         if (charName.indexOf(', First>') !== -1) {
-          var lastCharCode = parseInt(unicodedata[++i].split(';')[0], 16);
+          var lastCharCode = parseInt(
+            unicodeData.characterNameList[++i].split(';')[0],
+            16
+          );
           charName = charName.replace(/, First>$/, '').replace(/^</, '');
           for (; charCode <= lastCharCode; charCode++) {
             var hexCharCode = charCode.toString(16).toUpperCase();
-            charNameList[charCode] = charName + '-' + hexCharCode;
+            characterNameList[charCode] = charName + '-' + hexCharCode;
           }
         } else {
-          charNameList[charCode] = charName;
+          characterNameList[charCode] = charName;
         }
 
       }
 
     }
 
-    UnicodeCharName.charNameList = charNameList;
+    /**
+     * @type {Array.<string>}
+     * @private
+     */
+    UCD.characterNameList = characterNameList;
 
   };
 
   // export
   if (typeof module !== 'undefined') {
-    module.exports = UnicodeCharName;
+    module.exports = UCD;
   } else {
-    global.UnicodeCharName = UnicodeCharName;
+    global.UCD = UCD;
   }
 
 })(this);
