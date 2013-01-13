@@ -1,6 +1,6 @@
 {
   "name" : "ucd",
-  "version" : "0.1.1",
+  "version" : "0.1.2",
   "description" : "ucd - Unicode Character Database for JavaScript",
   "tags" : ["unicode", "ucd", "utility"],
   "author" : "ynakajima <yuhta.nakajima@gmail.com>",
