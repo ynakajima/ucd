@@ -146,7 +146,9 @@
       expect(UCD.getName('︑')).toEqual('PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA');
       expect(UCD.getName('︻')).toEqual('PRESENTATION FORM FOR VERTICAL LEFT BLACK LENTICULAR BRACKET');
       expect(UCD.getName('ｻ')).toEqual('HALFWIDTH KATAKANA LETTER SA');
-      // expect(UCD.getName('🂩')).toEqual('PLAYING CARD NINE OF SPADES'); // TODO:(ynakajima) 調査!
+      expect(UCD.getName('𨉷')).toEqual('CJK UNIFIED IDEOGRAPH EXTENSION B-28277');
+      expect(UCD.getName('𝄞')).toEqual('MUSICAL SYMBOL G CLEF');
+      expect(UCD.getName('🂩')).toEqual('PLAYING CARD NINE OF SPADES');
     });
 
   });

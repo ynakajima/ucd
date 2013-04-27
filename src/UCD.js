@@ -56,6 +56,13 @@
       UCD.readUnicodeData(UnicodeData);
     }
 
+    // Surrogate Pair
+    if (charCode >= 0xD800 && charCode <= 0xDBFF) {
+      var heigh = charCode;
+      var low = character.charCodeAt(1);
+      charCode = ((heigh - 0xD800) << 10) + (low - 0xDC00) + 0x10000;
+    }
+
     // return Unicode Name
     var unicodeName = UCD.characterNameList[charCode];
     return (typeof unicodeName !== 'undefined') ? unicodeName : 'undefined';
